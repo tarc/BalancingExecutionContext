@@ -16,6 +16,6 @@ Some function that needs to be given some data and executed in a particular exec
 
 To post work to an execution context means to engage the computational power available to the execution context into executing this work.
 
-It also means that this given particular work instance *must be executed precisely by the required execution context* &mdash; if there are any previous work in the same synchronization context being processed (or waiting to be processed) by some other execution context, the execution context currently being posted must start buffering all work in the same synchronization context until there are no more such previous work left in other contexts.
+It also means that this given particular work instance *must be executed precisely by the required execution context* &mdash; if there are any previous work assigned to a different execution context but with the same synchronization context as that of the work currently being processed, the execution context currently required must delay this work's execution until all those previous work instances with the same synchronization context run to completion.
 
 Also, even if attached to the same execution context, work in the same synchronization context must not run concurrently.
